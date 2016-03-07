@@ -10,4 +10,8 @@
     <string name="email_or_username">Email or username</string>
     <string name="prompt_password">Password (8+ letters or numbers)</string>
     <string name="forgot_your_password">Forgot your password?</string>
+    <string name="want_to_reset">Want to reset your password?</string>
+    <string name="enter_your_email">Enter your email address</string>
+    <string name="reset">Reset</string>
+    <string name="required">Required</string>
 </resources>
