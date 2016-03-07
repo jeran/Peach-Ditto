@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/page_login_toolbar"
@@ -12,6 +14,6 @@
         android:background="@color/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:title="@string/sign_in"
-        app:title="@string/sign_in"
-        app:navigationIcon="@mipmap/ic_chevron_left_black_24dp"/>
+        app:navigationIcon="@mipmap/ic_chevron_left_black_24dp"
+        app:title="@string/sign_in" />
 </LinearLayout>
