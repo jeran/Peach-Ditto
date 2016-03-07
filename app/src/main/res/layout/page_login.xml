@@ -49,5 +49,10 @@
                 android:maxLines="1"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
+
+        <Button
+            style="@style/PeachButton"
+            android:layout_gravity="center"
+            android:text="@string/sign_in" />
     </LinearLayout>
 </LinearLayout>
