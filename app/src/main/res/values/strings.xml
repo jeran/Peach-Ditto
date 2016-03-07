@@ -9,4 +9,5 @@
     <string name="privacy_policy"><b>Privacy Policy</b> and <b>Terms</b>.</string>
     <string name="email_or_username">Email or username</string>
     <string name="prompt_password">Password (8+ letters or numbers)</string>
+    <string name="forgot_your_password">Forgot your password?</string>
 </resources>
