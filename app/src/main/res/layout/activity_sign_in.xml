@@ -17,9 +17,16 @@
         app:navigationIcon="@mipmap/ic_chevron_left_black_24dp"
         app:title="@string/sign_in" />
 
+    <View
+        android:layout_width="0px"
+        android:layout_height="0px"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp">
 
@@ -29,6 +36,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/email_or_username"
             android:maxLines="1"
+            android:nextFocusLeft="@id/sign_in_username"
+            android:nextFocusUp="@id/sign_in_username"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
 
