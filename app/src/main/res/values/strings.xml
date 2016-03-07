@@ -7,4 +7,6 @@
     <string name="have_an_account">Have an account already?</string>
     <string name="by_using_peach">By using Peach you agree to the</string>
     <string name="privacy_policy"><b>Privacy Policy</b> and <b>Terms</b>.</string>
+    <string name="email_or_username">Email or username</string>
+    <string name="prompt_password">Passsword (8+ letters or numbers)</string>
 </resources>
