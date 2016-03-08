@@ -7,10 +7,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.jeranfox.peach.api.Peach;
+import com.jeranfox.peach.api.response.SignInResponse;
+
 import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -62,7 +68,17 @@ public class SignInActivity extends AppCompatActivity {
     @OnClick(R.id.sign_in_button)
     void onSignInButtonClicked() {
         if (localValidation()) {
-            // TODO(jeran): make network call
+            Peach.with(this).signIn(userNameEditText.getText().toString(), passwordEditText.getText().toString(), new Callback<SignInResponse>() {
+                @Override
+                public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<SignInResponse> call, Throwable t) {
+
+                }
+            });
         }
     }
 
