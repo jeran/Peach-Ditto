@@ -1,10 +1,13 @@
 package com.jeranfox.peach;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.jeranfox.peach.api.Peach;
@@ -21,10 +24,19 @@ import retrofit2.Response;
 public class SignInActivity extends AppCompatActivity {
 
     @BindString(R.string.required)
-    String required;
+    String requiredString;
+
+    @BindString(R.string.invalid_email_password_pair)
+    String invalidEmailPasswordPairString;
+
+    @Bind(R.id.sign_in_root)
+    View root;
 
     @Bind(R.id.sign_in_toolbar)
     Toolbar toolbar;
+
+    @Bind(R.id.sign_in_button)
+    Button signInButton;
 
     @Bind(R.id.sign_in_username)
     EditText userNameEditText;
@@ -68,18 +80,28 @@ public class SignInActivity extends AppCompatActivity {
     @OnClick(R.id.sign_in_button)
     void onSignInButtonClicked() {
         if (localValidation()) {
+            signInButton.setEnabled(false);
             Peach.with(this).signIn(userNameEditText.getText().toString(), passwordEditText.getText().toString(), new Callback<SignInResponse>() {
                 @Override
                 public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
-
+                    // TODO(jeran): open HomeActivity
                 }
 
                 @Override
                 public void onFailure(Call<SignInResponse> call, Throwable t) {
-
+                    String errorMessage = invalidEmailPasswordPairString;
+                    if (t instanceof Peach.ApiException) {
+                        errorMessage = t.getMessage();
+                    }
+                    displayError(errorMessage);
+                    signInButton.setEnabled(true);
                 }
             });
         }
+    }
+
+    private void displayError(String errorMessage) {
+        Snackbar.make(root, errorMessage, Snackbar.LENGTH_LONG).show();
     }
 
     private boolean localValidation() {
@@ -88,7 +110,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private boolean validateLocalField(EditText editText) {
         if (editText.getText().toString().isEmpty()) {
-            editText.setError(required);
+            editText.setError(requiredString);
             return false;
         }
         return true;
