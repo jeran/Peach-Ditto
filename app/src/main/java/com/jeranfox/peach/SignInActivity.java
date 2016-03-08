@@ -20,6 +20,7 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -124,6 +125,7 @@ public class SignInActivity extends AppCompatActivity {
         void onResetPasswordClicked() {
             if (validateLocalField(resetEmailEditText)) {
                 // TODO(jeran): make network call to reset password
+                Timber.i("Reset password clicked.");
             }
         }
     }
