@@ -46,14 +46,16 @@
         android:id="@+id/intro_sign_up"
         style="@style/PeachButton"
         android:layout_gravity="center"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/sign_up" />
 
     <LinearLayout
+        android:id="@+id/intro_sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -62,7 +64,6 @@
             android:text="@string/have_an_account" />
 
         <Button
-            android:id="@+id/intro_sign_in"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
