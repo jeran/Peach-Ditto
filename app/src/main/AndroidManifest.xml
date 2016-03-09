@@ -19,5 +19,6 @@
         <activity
             android:name=".SignInActivity"
             android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".HomeActivity" />
     </application>
 </manifest>
