@@ -1,5 +1,6 @@
 package com.jeranfox.peach;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -11,19 +12,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.jeranfox.peach.api.Peach;
-import com.jeranfox.peach.api.response.SignInResponse;
+import com.jeranfox.peach.presenters.SignInPresenter;
+import com.jeranfox.peach.presenters.SignInPresenterImpl;
+import com.jeranfox.peach.views.SignInView;
 
 import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity implements SignInView {
 
     @BindString(R.string.required)
     String requiredString;
@@ -46,12 +44,16 @@ public class SignInActivity extends AppCompatActivity {
     @Bind(R.id.sign_in_password)
     EditText passwordEditText;
 
+    private SignInPresenter signInPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        signInPresenter = new SignInPresenterImpl();
+        signInPresenter.setView(this);
     }
 
     @Override
@@ -82,29 +84,8 @@ public class SignInActivity extends AppCompatActivity {
     @OnClick(R.id.sign_in_button)
     void onSignInButtonClicked() {
         if (localValidation()) {
-            signInButton.setEnabled(false);
-            Peach.with(this).signIn(userNameEditText.getText().toString(), passwordEditText.getText().toString(), new Callback<SignInResponse>() {
-                @Override
-                public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
-                    startActivity(new Intent(SignInActivity.this, HomeActivity.class));
-                    finish();
-                }
-
-                @Override
-                public void onFailure(Call<SignInResponse> call, Throwable t) {
-                    String errorMessage = invalidEmailPasswordPairString;
-                    if (t instanceof Peach.ApiException) {
-                        errorMessage = t.getMessage();
-                    }
-                    displayError(errorMessage);
-                    signInButton.setEnabled(true);
-                }
-            });
+            signInPresenter.signIn(userNameEditText.getText().toString(), passwordEditText.getText().toString());
         }
-    }
-
-    private void displayError(String errorMessage) {
-        Snackbar.make(root, errorMessage, Snackbar.LENGTH_LONG).show();
     }
 
     private boolean localValidation() {
@@ -119,6 +100,35 @@ public class SignInActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    @Override
+    public void openHomeActivity() {
+        startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+        finish();
+    }
+
+    @Override
+    public void displayErrorMessage(String message) {
+        if (message == null) {
+            message = invalidEmailPasswordPairString;
+        }
+        Snackbar.make(root, message, Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void enableSignInButton() {
+        signInButton.setEnabled(true);
+    }
+
+    @Override
+    public void disableSignInButton() {
+        signInButton.setEnabled(false);
+    }
+
     class ResetPasswordDialog {
         @Bind(R.id.reset_password_dialog_email)
         EditText resetEmailEditText;
@@ -126,8 +136,7 @@ public class SignInActivity extends AppCompatActivity {
         @OnClick(R.id.reset_password_dialog_reset)
         void onResetPasswordClicked() {
             if (validateLocalField(resetEmailEditText)) {
-                // TODO(jeran): make network call to reset password
-                Timber.i("Reset password clicked.");
+                signInPresenter.resetPassword();
             }
         }
     }
