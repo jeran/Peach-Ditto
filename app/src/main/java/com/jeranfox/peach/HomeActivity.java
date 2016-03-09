@@ -17,5 +17,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
+        viewPager.setAdapter(new HomePagerAdapter(this));
     }
 }

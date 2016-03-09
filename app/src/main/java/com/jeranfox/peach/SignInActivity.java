@@ -1,5 +1,6 @@
 package com.jeranfox.peach;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -85,7 +86,8 @@ public class SignInActivity extends AppCompatActivity {
             Peach.with(this).signIn(userNameEditText.getText().toString(), passwordEditText.getText().toString(), new Callback<SignInResponse>() {
                 @Override
                 public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
-                    // TODO(jeran): open HomeActivity
+                    startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                    finish();
                 }
 
                 @Override
