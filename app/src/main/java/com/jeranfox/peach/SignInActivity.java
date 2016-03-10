@@ -20,7 +20,6 @@ import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import timber.log.Timber;
 
 public class SignInActivity extends AppCompatActivity implements SignInView {
 
@@ -53,7 +52,7 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        signInPresenter = new SignInPresenterImpl(this);
+        signInPresenter = createPresenter();
     }
 
     @Override
@@ -66,6 +65,9 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
     protected void onDestroy() {
         super.onDestroy();
         signInPresenter.releaseView();
+        if (isFinishing()) {
+            PresenterHolder.getInstance().remove(SignInActivity.class);
+        }
     }
 
     @Override
@@ -133,6 +135,16 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
     @Override
     public void disableSignInButton() {
         signInButton.setEnabled(false);
+    }
+
+    public SignInPresenter createPresenter() {
+        SignInPresenter presenter = PresenterHolder.getInstance().getPresenter(SignInPresenter.class);
+        if (presenter != null) {
+            presenter.setView(this);
+        } else {
+            presenter = new SignInPresenterImpl(this);
+        }
+        return presenter;
     }
 
     class ResetPasswordDialog {

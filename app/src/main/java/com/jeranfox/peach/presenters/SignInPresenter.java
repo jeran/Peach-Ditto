@@ -2,7 +2,7 @@ package com.jeranfox.peach.presenters;
 
 import com.jeranfox.peach.views.SignInView;
 
-public interface SignInPresenter {
+public interface SignInPresenter extends Presenter {
 
     void setView(SignInView view);
 
