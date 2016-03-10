@@ -20,6 +20,7 @@ import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import timber.log.Timber;
 
 public class SignInActivity extends AppCompatActivity implements SignInView {
 
@@ -52,14 +53,19 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        signInPresenter = new SignInPresenterImpl();
-        signInPresenter.setView(this);
+        signInPresenter = new SignInPresenterImpl(this);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.animator.translate_in_from_left, R.animator.translate_out_to_right);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        signInPresenter.releaseView();
     }
 
     @Override

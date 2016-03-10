@@ -7,6 +7,11 @@ import com.jeranfox.peach.api.request.SignInRequest;
 import com.jeranfox.peach.api.response.ApiResponse;
 import com.jeranfox.peach.api.response.SignInResponse;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -33,6 +38,7 @@ public class Peach {
 
     private Context context;
     private PeachService peachService;
+    private Map<Callback, Call> calls = new HashMap<>();
 
     private Peach(Context context) {
         this.context = context.getApplicationContext();
@@ -51,6 +57,7 @@ public class Peach {
 
     public void signIn(String username, String password, final Callback<SignInResponse> callback) {
         Call<SignInResponse> call = peachService.signIn(new SignInRequest(username, password));
+        calls.put(callback, call);
         Callback<SignInResponse> storeTokenCallback = new Callback<SignInResponse>() {
             @Override
             public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
@@ -64,6 +71,17 @@ public class Peach {
             }
         };
         call.enqueue(new ApiExceptionCallback<>(storeTokenCallback));
+    }
+
+    public void cancelRequest(Callback callback) {
+        calls.get(callback).cancel();
+    }
+
+    public void cancelRequests(Set<Callback> callbacks) {
+        Iterator<Callback> iterator = callbacks.iterator();
+        while (iterator.hasNext()) {
+            calls.get(iterator.next()).cancel();
+        }
     }
 
     public void signOut() {
