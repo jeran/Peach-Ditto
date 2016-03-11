@@ -2,11 +2,10 @@ package com.jeranfox.peach.ui.views;
 
 import android.content.Context;
 
-import com.jeranfox.peach.entities.Connection;
-
-import java.util.List;
+import com.jeranfox.peach.entities.ExploreItem;
 
 public interface ExploreView {
-    void setConnections(List<Connection> connections);
+    void setExploreItems(ExploreItem[] exploreItems);
+
     Context getContext();
 }

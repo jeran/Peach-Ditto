@@ -86,7 +86,7 @@ public class Peach {
     }
 
     public void getExploreFeed(Callback<ExploreResponse> exploreCallBack) {
-        Call<ExploreResponse> call = peachService.getExploreFeed(getAuthToken());
+        Call<ExploreResponse> call = peachService.getExploreFeed(getAuthHeader());
         calls.put(exploreCallBack, call);
         call.enqueue(new ApiExceptionCallback<>(exploreCallBack));
     }
@@ -100,7 +100,7 @@ public class Peach {
     }
 
     public void signOut() {
-        PreferenceManager.getDefaultSharedPreferences(context).edit().remove(AUTH_TOKEN_KEY);
+        PreferenceManager.getDefaultSharedPreferences(context).edit().remove(AUTH_TOKEN_KEY).apply();
     }
 
     private void storeToken(String token) {
@@ -130,7 +130,9 @@ public class Peach {
 
         @Override
         public void onResponse(Call<T> call, Response<T> response) {
-            if (response.body().wasSuccess()) {
+            if (response.body() == null) {
+                onFailure(call, new ApiException("Server error. Empty Response."));
+            } else if (response.body().wasSuccess()) {
                 callback.onResponse(call, response);
             } else {
                 onFailure(call, new ApiException(response.body().getErrorMessage()));

@@ -1,20 +1,19 @@
 package com.jeranfox.peach.presenters;
 
-import android.os.Handler;
-import android.os.Looper;
-
-import com.jeranfox.peach.entities.Connection;
+import com.jeranfox.peach.SimpleCallback;
+import com.jeranfox.peach.entities.ExploreItem;
+import com.jeranfox.peach.models.ExploreModel;
+import com.jeranfox.peach.models.ExploreModelImpl;
 import com.jeranfox.peach.ui.views.ExploreView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ExplorePresenterImpl implements ExplorePresenter {
     private ExploreView exploreView;
-    private List<Connection> connections = new ArrayList<>();
+    private ExploreModel exploreModel;
+    private ExploreItem[] exploreItems;
 
     public ExplorePresenterImpl(ExploreView exploreView) {
         this.exploreView = exploreView;
+        this.exploreModel = new ExploreModelImpl(exploreView.getContext());
     }
 
     @Override
@@ -24,27 +23,24 @@ public class ExplorePresenterImpl implements ExplorePresenter {
 
     @Override
     public void loadExploreFeed() {
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < 15; i++) {
-                    connections.add(new Connection());
+        if (exploreItems != null) {
+            exploreView.setExploreItems(exploreItems);
+        } else {
+            // TODO(jeran): view.showLoading();
+            exploreModel.getExploreFeed(new SimpleCallback<ExploreItem[]>() {
+                @Override
+                public void onSuccess(ExploreItem[] response) {
+                    exploreItems = response;
+                    exploreView.setExploreItems(exploreItems);
                 }
-                exploreView.setConnections(connections);
-            }
-        }, 1000);
 
-//        Peach.with(exploreView.getContext()).getExploreFeed(new Callback<ExploreResponse>() {
-//            @Override
-//            public void onResponse(Call<ExploreResponse> call, Response<ExploreResponse> response) {
-//                Timber.i("" + response.body().getConnections()[0].getDisplayName());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ExploreResponse> call, Throwable t) {
-//                // TOT
-//                Timber.i("onFailure");
-//            }
-//        });
+                @Override
+                public void onFailure(Throwable throwable) {
+                    // TODO(jeran): handle failure
+                    // log failure
+                    // view.showFailure
+                }
+            });
+        }
     }
 }

@@ -31,8 +31,8 @@ public class ExploreResponse extends ApiResponse {
             return avatarSrc;
         }
 
-        public int getLastRead() {
-            return lastRead;
+        public int getLastOnline() {
+            return lastOnline;
         }
 
         public Post[] getPosts() {

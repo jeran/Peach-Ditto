@@ -8,12 +8,10 @@ import android.widget.FrameLayout;
 
 import com.jeranfox.peach.PresenterHolder;
 import com.jeranfox.peach.R;
-import com.jeranfox.peach.entities.Connection;
+import com.jeranfox.peach.entities.ExploreItem;
 import com.jeranfox.peach.presenters.ExplorePresenter;
 import com.jeranfox.peach.presenters.ExplorePresenterImpl;
 import com.jeranfox.peach.ui.views.ExploreView;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,8 +32,8 @@ public class ExplorePage extends FrameLayout implements ExploreView {
     }
 
     @Override
-    public void setConnections(List<Connection> connections) {
-        recyclerView.setAdapter(new ExploreRecyclerViewAdapter(connections));
+    public void setExploreItems(ExploreItem[] exploreItems) {
+        recyclerView.setAdapter(new ExploreRecyclerViewAdapter(exploreItems));
     }
 
     public ExplorePresenter createPresenter() {

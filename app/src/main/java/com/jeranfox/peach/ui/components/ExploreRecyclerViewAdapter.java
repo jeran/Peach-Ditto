@@ -8,10 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jeranfox.peach.R;
-import com.jeranfox.peach.entities.Connection;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.jeranfox.peach.entities.ExploreItem;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,10 +16,10 @@ import butterknife.ButterKnife;
 public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int HEADER_COUNT = 1;
     private static final int FOOTER_COUNT = 1;
-    private List<Connection> connections = new ArrayList<>();
+    private ExploreItem[] exploreItems = new ExploreItem[0];
 
-    public ExploreRecyclerViewAdapter(List<Connection> connections) {
-        this.connections = connections;
+    public ExploreRecyclerViewAdapter(ExploreItem[] exploreItems) {
+        this.exploreItems = exploreItems;
     }
 
     @Override
@@ -43,10 +40,10 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == ViewType.CONTENT) {
             ContentViewHolder contentViewHolder = (ContentViewHolder) holder;
-            Connection connection = connections.get(position - HEADER_COUNT);
-            contentViewHolder.title.setText(connection.getTitle());
+            ExploreItem connection = exploreItems[position - HEADER_COUNT];
+            contentViewHolder.title.setText(connection.getDisplayName());
             contentViewHolder.lastPost.setText(connection.getLastPost());
-            contentViewHolder.timeSinceLastPost.setText(connection.getTimeSinceLastPost());
+            contentViewHolder.timeSinceLastPost.setText(connection.getLastOnline() + "");
         }
     }
 
@@ -54,7 +51,7 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     public int getItemViewType(int position) {
         if (position == 0) {
             return ViewType.HEADER;
-        } else if (position == connections.size() + HEADER_COUNT) {
+        } else if (position == exploreItems.length + HEADER_COUNT) {
             return ViewType.FOOTER;
         } else {
             return ViewType.CONTENT;
@@ -63,7 +60,7 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
 
     @Override
     public int getItemCount() {
-        return connections.size() + HEADER_COUNT + FOOTER_COUNT;
+        return exploreItems.length + HEADER_COUNT + FOOTER_COUNT;
     }
 
     static class HeaderViewHolder extends RecyclerView.ViewHolder {
