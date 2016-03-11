@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.jeranfox.peach.api.Peach;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -12,6 +14,10 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Peach.with(this).signedIn()) {
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        }
         setContentView(R.layout.activity_intro);
         ButterKnife.bind(this);
     }

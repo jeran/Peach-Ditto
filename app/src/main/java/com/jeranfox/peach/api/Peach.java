@@ -84,6 +84,10 @@ public class Peach {
         }
     }
 
+    public boolean signedIn() {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(AUTH_TOKEN_KEY, null) != null;
+    }
+
     public void signOut() {
         PreferenceManager.getDefaultSharedPreferences(context).edit().remove(AUTH_TOKEN_KEY);
     }
