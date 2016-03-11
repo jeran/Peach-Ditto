@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="activity_translate_animation_duration">200</integer>
-    <dimen name="header_height">70dp</dimen>
+    <dimen name="header_height">75dp</dimen>
+    <dimen name="half_header_height">35dp</dimen>
     <dimen name="recycler_view_margin">15dp</dimen>
 </resources>

@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jeranfox.peach.R;
@@ -40,6 +41,8 @@ public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<Re
             ContentViewHolder contentViewHolder = (ContentViewHolder) holder;
             Friend friend = friends.get(position - HEADER_COUNT);
             contentViewHolder.title.setText(friend.getTitle());
+            contentViewHolder.lastPost.setText(friend.getLastPost());
+            contentViewHolder.timeSinceLastPost.setText(friend.getTimeSinceLastPost());
         }
     }
 
@@ -64,8 +67,17 @@ public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<Re
     }
 
     static class ContentViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.friends_of_friends_item_title)
+        @Bind(R.id.fof_item_profile_image)
+        ImageView profileImage;
+
+        @Bind(R.id.fof_item_title)
         TextView title;
+
+        @Bind(R.id.fof_item_last_post)
+        TextView lastPost;
+
+        @Bind(R.id.fof_item_time_since_last_post)
+        TextView timeSinceLastPost;
 
         public ContentViewHolder(View v) {
             super(v);
