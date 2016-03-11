@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class HomePagerAdapter extends PagerAdapter {
-    private FriendsOfFriendsPage friendsOfFriendsPage;
+    private ExplorePage explorePage;
     private FeedPage feedPage;
 
     public HomePagerAdapter(Context context) {
-        friendsOfFriendsPage = new FriendsOfFriendsPage(context);
+        explorePage = new ExplorePage(context);
         feedPage = new FeedPage(context);
     }
 
@@ -18,7 +18,7 @@ public class HomePagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup collection, int position) {
         View page;
         if (position == 0) {
-            page = friendsOfFriendsPage;
+            page = explorePage;
         } else {
             page = feedPage;
         }

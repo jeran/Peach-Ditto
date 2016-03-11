@@ -3,38 +3,38 @@ package com.jeranfox.peach.presenters;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.jeranfox.peach.entities.Friend;
-import com.jeranfox.peach.ui.views.FriendsOfFriendsView;
+import com.jeranfox.peach.entities.Connection;
+import com.jeranfox.peach.ui.views.ExploreView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FriendsOfFriendsPresenterImpl implements FriendsOfFriendsPresenter {
-    private FriendsOfFriendsView friendsOfFriendsView;
-    private List<Friend> friends = new ArrayList<>();
+public class ExplorePresenterImpl implements ExplorePresenter {
+    private ExploreView exploreView;
+    private List<Connection> connections = new ArrayList<>();
 
-    public FriendsOfFriendsPresenterImpl(FriendsOfFriendsView friendsOfFriendsView) {
-        this.friendsOfFriendsView = friendsOfFriendsView;
+    public ExplorePresenterImpl(ExploreView exploreView) {
+        this.exploreView = exploreView;
     }
 
     @Override
-    public void setView(FriendsOfFriendsView view) {
-        this.friendsOfFriendsView = view;
+    public void setView(ExploreView view) {
+        this.exploreView = view;
     }
 
     @Override
-    public void loadFriendsOfFriends() {
+    public void loadExploreFeed() {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                 for (int i = 0; i < 15; i++) {
-                    friends.add(new Friend());
+                    connections.add(new Connection());
                 }
-                friendsOfFriendsView.setFriendsOfFriends(friends);
+                exploreView.setConnections(connections);
             }
         }, 1000);
 
-//        Peach.with(friendsOfFriendsView.getContext()).getExploreFeed(new Callback<ExploreResponse>() {
+//        Peach.with(exploreView.getContext()).getExploreFeed(new Callback<ExploreResponse>() {
 //            @Override
 //            public void onResponse(Call<ExploreResponse> call, Response<ExploreResponse> response) {
 //                Timber.i("" + response.body().getConnections()[0].getDisplayName());

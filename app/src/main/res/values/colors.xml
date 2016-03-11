@@ -5,9 +5,12 @@
     <color name="colorAccent">#FB5174</color>
     <color name="colorAccentPressed">#E24968</color>
     <color name="buttonDisabled">#D2D2D2</color>
-    <color name="friends_of_friends_bg">#ffd1f4f5</color>
-    <color name="friends_of_friends_bg_dark">#ff6aa4ad</color>
 
+    <!-- Peach used -->
+    <color name="bg_explore">#ffd1f4f5</color>
+    <color name="bg_explore_dark">#ff6aa4ad</color>
+
+    <!-- Peach unused -->
     <color name="onboardPrimaryDark">#ff999999</color>
     <color name="abc_input_method_navigation_guard">@android:color/black</color>
     <color name="abc_search_url_text_normal">#ff7fa87f</color>
@@ -21,8 +24,8 @@
     <color name="background_material_dark">@color/material_grey_850</color>
     <color name="background_material_light">@color/material_grey_50</color>
     <color name="bg_composer">#ffededed</color>
-    <color name="bg_explore">#ffd1f4f5</color>
-    <color name="bg_explore_dark">#ff6aa4ad</color>
+    <!--<color name="bg_explore">#ffd1f4f5</color>-->
+    <!--<color name="bg_explore_dark">#ff6aa4ad</color>-->
     <color name="bg_image_placeholder">#ffededed</color>
     <color name="bg_tutorial">#ffffeef1</color>
     <color name="bluePrimary">#ffd1f4f5</color>

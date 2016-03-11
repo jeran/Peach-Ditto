@@ -4,5 +4,5 @@
     android:id="@+id/home_view_pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/friends_of_friends_bg"
+    android:background="@color/bg_explore"
     tools:context=".ui.activities.HomeActivity" />

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jeranfox.peach.R;
-import com.jeranfox.peach.entities.Friend;
+import com.jeranfox.peach.entities.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,26 +16,26 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int HEADER_COUNT = 1;
     private static final int FOOTER_COUNT = 1;
-    private List<Friend> friends = new ArrayList<>();
+    private List<Connection> connections = new ArrayList<>();
 
-    public FriendsOfFriendsRecyclerViewAdapter(List<Friend> friends) {
-        this.friends = friends;
+    public ExploreRecyclerViewAdapter(List<Connection> connections) {
+        this.connections = connections;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ViewType.HEADER) {
             return new HeaderViewHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.friends_of_friends_header, parent, false));
+                    .inflate(R.layout.explore_header, parent, false));
         } else if (viewType == ViewType.FOOTER) {
             return new FooterViewHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.friends_of_friends_footer, parent, false));
+                    .inflate(R.layout.explore_footer, parent, false));
         } else {
             return new ContentViewHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.friends_of_friends_item, parent, false));
+                    .inflate(R.layout.explore_item, parent, false));
         }
     }
 
@@ -43,10 +43,10 @@ public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<Re
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == ViewType.CONTENT) {
             ContentViewHolder contentViewHolder = (ContentViewHolder) holder;
-            Friend friend = friends.get(position - HEADER_COUNT);
-            contentViewHolder.title.setText(friend.getTitle());
-            contentViewHolder.lastPost.setText(friend.getLastPost());
-            contentViewHolder.timeSinceLastPost.setText(friend.getTimeSinceLastPost());
+            Connection connection = connections.get(position - HEADER_COUNT);
+            contentViewHolder.title.setText(connection.getTitle());
+            contentViewHolder.lastPost.setText(connection.getLastPost());
+            contentViewHolder.timeSinceLastPost.setText(connection.getTimeSinceLastPost());
         }
     }
 
@@ -54,7 +54,7 @@ public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<Re
     public int getItemViewType(int position) {
         if (position == 0) {
             return ViewType.HEADER;
-        } else if (position == friends.size() + HEADER_COUNT) {
+        } else if (position == connections.size() + HEADER_COUNT) {
             return ViewType.FOOTER;
         } else {
             return ViewType.CONTENT;
@@ -63,7 +63,7 @@ public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<Re
 
     @Override
     public int getItemCount() {
-        return friends.size() + HEADER_COUNT + FOOTER_COUNT;
+        return connections.size() + HEADER_COUNT + FOOTER_COUNT;
     }
 
     static class HeaderViewHolder extends RecyclerView.ViewHolder {
@@ -79,16 +79,16 @@ public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<Re
     }
 
     static class ContentViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.fof_item_profile_image)
+        @Bind(R.id.explore_item_profile_image)
         ImageView profileImage;
 
-        @Bind(R.id.fof_item_title)
+        @Bind(R.id.explore_item_title)
         TextView title;
 
-        @Bind(R.id.fof_item_last_post)
+        @Bind(R.id.explore_item_last_post)
         TextView lastPost;
 
-        @Bind(R.id.fof_item_time_since_last_post)
+        @Bind(R.id.explore_item_time_since_last_post)
         TextView timeSinceLastPost;
 
         public ContentViewHolder(View v) {
