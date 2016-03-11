@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Peach</string>
+
     <string name="a_fun_simple_way">A fun, simple way to keep up</string>
     <string name="with_friends">with friends and be yourself.</string>
     <string name="sign_up">Sign Up</string>
@@ -15,4 +16,6 @@
     <string name="reset">Reset</string>
     <string name="required">Required</string>
     <string name="invalid_email_password_pair">Invalid email/password pair</string>
+
+    <string name="friends_of_friends">Friends of Friends</string>
 </resources>

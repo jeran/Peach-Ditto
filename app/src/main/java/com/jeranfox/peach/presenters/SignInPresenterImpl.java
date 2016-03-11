@@ -1,8 +1,8 @@
 package com.jeranfox.peach.presenters;
 
 import com.jeranfox.peach.api.Peach;
-import com.jeranfox.peach.api.models.SignInModel;
-import com.jeranfox.peach.api.models.SignInModelImpl;
+import com.jeranfox.peach.models.SignInModel;
+import com.jeranfox.peach.models.SignInModelImpl;
 import com.jeranfox.peach.api.response.SignInResponse;
 import com.jeranfox.peach.views.SignInView;
 
