@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 
 public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int HEADER_COUNT = 1;
+    private static final int FOOTER_COUNT = 1;
     private List<Friend> friends = new ArrayList<>();
 
     public FriendsOfFriendsRecyclerViewAdapter(List<Friend> friends) {
@@ -29,6 +30,9 @@ public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<Re
         if (viewType == ViewType.HEADER) {
             return new HeaderViewHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.friends_of_friends_header, parent, false));
+        } else if (viewType == ViewType.FOOTER) {
+            return new FooterViewHolder(LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.friends_of_friends_footer, parent, false));
         } else {
             return new ContentViewHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.friends_of_friends_item, parent, false));
@@ -50,6 +54,8 @@ public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<Re
     public int getItemViewType(int position) {
         if (position == 0) {
             return ViewType.HEADER;
+        } else if (position == friends.size() + HEADER_COUNT) {
+            return ViewType.FOOTER;
         } else {
             return ViewType.CONTENT;
         }
@@ -57,11 +63,17 @@ public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<Re
 
     @Override
     public int getItemCount() {
-        return friends.size() + HEADER_COUNT;
+        return friends.size() + HEADER_COUNT + FOOTER_COUNT;
     }
 
     static class HeaderViewHolder extends RecyclerView.ViewHolder {
         public HeaderViewHolder(View itemView) {
+            super(itemView);
+        }
+    }
+
+    static class FooterViewHolder extends RecyclerView.ViewHolder {
+        public FooterViewHolder(View itemView) {
             super(itemView);
         }
     }
@@ -88,5 +100,6 @@ public class FriendsOfFriendsRecyclerViewAdapter extends RecyclerView.Adapter<Re
     static class ViewType {
         static final int HEADER = 0;
         static final int CONTENT = 1;
+        static final int FOOTER = 2;
     }
 }
