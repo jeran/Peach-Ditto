@@ -1,4 +1,4 @@
-package com.jeranfox.peach.api.models;
+package com.jeranfox.peach.models;
 
 import android.content.Context;
 

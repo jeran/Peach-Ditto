@@ -1,4 +1,4 @@
-package com.jeranfox.peach.api.models;
+package com.jeranfox.peach.models;
 
 import com.jeranfox.peach.api.response.SignInResponse;
 
