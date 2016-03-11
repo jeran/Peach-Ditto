@@ -1,6 +1,6 @@
 package com.jeranfox.peach.presenters;
 
-import com.jeranfox.peach.views.SignInView;
+import com.jeranfox.peach.ui.views.SignInView;
 
 public interface SignInPresenter extends Presenter {
 

@@ -4,7 +4,7 @@ import com.jeranfox.peach.api.Peach;
 import com.jeranfox.peach.models.SignInModel;
 import com.jeranfox.peach.models.SignInModelImpl;
 import com.jeranfox.peach.api.response.SignInResponse;
-import com.jeranfox.peach.views.SignInView;
+import com.jeranfox.peach.ui.views.SignInView;
 
 import retrofit2.Call;
 import retrofit2.Callback;

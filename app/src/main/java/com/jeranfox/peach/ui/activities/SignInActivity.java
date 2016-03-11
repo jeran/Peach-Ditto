@@ -1,4 +1,4 @@
-package com.jeranfox.peach;
+package com.jeranfox.peach.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.jeranfox.peach.PresenterHolder;
+import com.jeranfox.peach.R;
 import com.jeranfox.peach.presenters.SignInPresenter;
 import com.jeranfox.peach.presenters.SignInPresenterImpl;
-import com.jeranfox.peach.views.SignInView;
+import com.jeranfox.peach.ui.views.SignInView;
 
 import butterknife.Bind;
 import butterknife.BindString;

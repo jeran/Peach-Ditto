@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/header_height"
     android:background="@android:color/white"
-    tools:context=".HomeActivity">
+    tools:context=".ui.activities.HomeActivity">
 
     <TextView
         android:id="@+id/friends_of_friends_item_title"

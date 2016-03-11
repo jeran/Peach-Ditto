@@ -5,4 +5,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/friends_of_friends_bg"
-    tools:context=".HomeActivity" />
+    tools:context=".ui.activities.HomeActivity" />

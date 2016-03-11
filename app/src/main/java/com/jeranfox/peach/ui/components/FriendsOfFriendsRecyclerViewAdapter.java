@@ -1,4 +1,4 @@
-package com.jeranfox.peach;
+package com.jeranfox.peach.ui.components;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.jeranfox.peach.R;
 import com.jeranfox.peach.entities.Friend;
 
 import java.util.ArrayList;

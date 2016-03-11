@@ -1,4 +1,4 @@
-package com.jeranfox.peach.views;
+package com.jeranfox.peach.ui.views;
 
 import android.content.Context;
 

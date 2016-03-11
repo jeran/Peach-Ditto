@@ -1,9 +1,10 @@
-package com.jeranfox.peach;
+package com.jeranfox.peach.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.jeranfox.peach.R;
 import com.jeranfox.peach.api.Peach;
 
 import butterknife.ButterKnife;
