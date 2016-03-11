@@ -5,6 +5,7 @@ import android.preference.PreferenceManager;
 
 import com.jeranfox.peach.api.request.SignInRequest;
 import com.jeranfox.peach.api.response.ApiResponse;
+import com.jeranfox.peach.api.response.ExploreResponse;
 import com.jeranfox.peach.api.response.SignInResponse;
 
 import java.util.HashMap;
@@ -84,8 +85,18 @@ public class Peach {
         }
     }
 
+    public void getExploreFeed(Callback<ExploreResponse> exploreCallBack) {
+        Call<ExploreResponse> call = peachService.getExploreFeed(getAuthToken());
+        calls.put(exploreCallBack, call);
+        call.enqueue(new ApiExceptionCallback<>(exploreCallBack));
+    }
+
+    private String getAuthHeader() {
+        return "Bearer " + getAuthToken();
+    }
+
     public boolean signedIn() {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(AUTH_TOKEN_KEY, null) != null;
+        return getAuthToken() != null;
     }
 
     public void signOut() {
@@ -94,6 +105,10 @@ public class Peach {
 
     private void storeToken(String token) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString(AUTH_TOKEN_KEY, token).apply();
+    }
+
+    private String getAuthToken() {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(AUTH_TOKEN_KEY, null);
     }
 
     public static class ApiException extends Exception {
