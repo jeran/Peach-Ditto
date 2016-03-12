@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <integer name="activity_translate_animation_duration">200</integer>
     <dimen name="header_height">75dp</dimen>
     <dimen name="half_header_height">35dp</dimen>
     <dimen name="recycler_view_margin">15dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Official Peach dimens -->
+    <dimen name="design_fab_border_width" tools:override="true">0.5dip</dimen>
+    <dimen name="design_fab_elevation" tools:override="true">6.0dip</dimen>
+    <dimen name="design_fab_image_size">24.0dip</dimen>
+    <dimen name="design_fab_size_mini" tools:override="true">40.0dip</dimen>
+    <dimen name="design_fab_size_normal" tools:override="true">56.0dip</dimen>
+    <dimen name="design_fab_translation_z_pressed" tools:override="true">6.0dip</dimen>
 </resources>
