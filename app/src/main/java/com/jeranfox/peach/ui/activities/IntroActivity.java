@@ -15,7 +15,7 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Peach.with(this).signedIn()) {
+        if (new Peach(this).signedIn()) {
             startActivity(new Intent(this, HomeActivity.class));
             finish();
         }

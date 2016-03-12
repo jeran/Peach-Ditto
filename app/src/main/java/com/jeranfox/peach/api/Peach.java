@@ -8,9 +8,7 @@ import com.jeranfox.peach.api.response.ApiResponse;
 import com.jeranfox.peach.api.response.ExploreResponse;
 import com.jeranfox.peach.api.response.SignInResponse;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
 
 import okhttp3.OkHttpClient;
@@ -24,24 +22,12 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class Peach {
     private static final String AUTH_TOKEN_KEY = "auth_token_key";
-    private static volatile Peach singleton;
-
-    public static Peach with(Context context) {
-        if (singleton == null) {
-            synchronized (Peach.class) {
-                if (singleton == null) {
-                    singleton = new Peach(context);
-                }
-            }
-        }
-        return singleton;
-    }
 
     private Context context;
     private PeachService peachService;
-    private Map<Callback, Call> calls = new HashMap<>();
+    private Set<Call> calls = new HashSet<>();
 
-    private Peach(Context context) {
+    public Peach(Context context) {
         this.context = context.getApplicationContext();
 
         // TODO(jeran): implement better solution for logging
@@ -58,7 +44,6 @@ public class Peach {
 
     public void signIn(String username, String password, final Callback<SignInResponse> callback) {
         Call<SignInResponse> call = peachService.signIn(new SignInRequest(username, password));
-        calls.put(callback, call);
         Callback<SignInResponse> storeTokenCallback = new Callback<SignInResponse>() {
             @Override
             public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
@@ -71,24 +56,24 @@ public class Peach {
                 callback.onFailure(call, t);
             }
         };
-        call.enqueue(new ApiExceptionCallback<>(storeTokenCallback));
+        executeCall(call, storeTokenCallback);
     }
 
-    public void cancelRequest(Callback callback) {
-        calls.get(callback).cancel();
-    }
-
-    public void cancelRequests(Set<Callback> callbacks) {
-        Iterator<Callback> iterator = callbacks.iterator();
-        while (iterator.hasNext()) {
-            calls.get(iterator.next()).cancel();
+    public void cancelRequests() {
+        for (Call call : calls) {
+            call.cancel();
         }
+        calls.clear();
     }
 
     public void getExploreFeed(Callback<ExploreResponse> exploreCallBack) {
         Call<ExploreResponse> call = peachService.getExploreFeed(getAuthHeader());
-        calls.put(exploreCallBack, call);
-        call.enqueue(new ApiExceptionCallback<>(exploreCallBack));
+        executeCall(call, exploreCallBack);
+    }
+
+    private <T extends ApiResponse> void executeCall(Call<T> call, Callback<T> callback) {
+        calls.add(call);
+        call.enqueue(new ApiExceptionCallback<>(callback));
     }
 
     private String getAuthHeader() {

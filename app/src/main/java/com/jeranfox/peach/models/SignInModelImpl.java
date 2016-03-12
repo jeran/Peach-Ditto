@@ -5,23 +5,19 @@ import android.content.Context;
 import com.jeranfox.peach.api.Peach;
 import com.jeranfox.peach.api.response.SignInResponse;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import retrofit2.Callback;
 import timber.log.Timber;
 
 public class SignInModelImpl implements SignInModel {
-    private final Set<Callback> callbacks = new HashSet<>();
     private final Peach peach;
 
     public SignInModelImpl(Context context) {
-        peach = Peach.with(context);
+        peach = new Peach(context);
     }
 
     @Override
     public void cancelRequests() {
-        peach.cancelRequests(callbacks);
+        peach.cancelRequests();
     }
 
     @Override

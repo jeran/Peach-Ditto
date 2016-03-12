@@ -15,12 +15,12 @@ public class ExploreModelImpl implements ExploreModel {
     private final Peach peach;
 
     public ExploreModelImpl(Context context) {
-        peach = Peach.with(context);
+        peach = new Peach(context);
     }
 
     @Override
     public void cancelRequests() {
-        // TODO(jeran): handle request cancels
+        peach.cancelRequests();
     }
 
     @Override
