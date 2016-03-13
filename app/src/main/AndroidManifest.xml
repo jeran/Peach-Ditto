@@ -20,5 +20,6 @@
             android:name=".ui.activities.SignInActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ui.activities.HomeActivity" />
+        <activity android:name=".ui.activities.PersonalFeedActivity" />
     </application>
 </manifest>
