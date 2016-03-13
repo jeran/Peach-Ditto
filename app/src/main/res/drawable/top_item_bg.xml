@@ -5,8 +5,8 @@
             <corners
                 android:bottomLeftRadius="0dp"
                 android:bottomRightRadius="0dp"
-                android:topLeftRadius="8dp"
-                android:topRightRadius="8dp" />
+                android:topLeftRadius="@dimen/item_corner_radius"
+                android:topRightRadius="@dimen/item_corner_radius" />
             <stroke
                 android:width="@dimen/item_border_thickness"
                 android:color="@color/itemBorder" />
@@ -21,8 +21,8 @@
             <corners
                 android:bottomLeftRadius="0dp"
                 android:bottomRightRadius="0dp"
-                android:topLeftRadius="8dp"
-                android:topRightRadius="8dp" />
+                android:topLeftRadius="@dimen/item_corner_radius"
+                android:topRightRadius="@dimen/item_corner_radius" />
         </shape>
     </item>
 </layer-list>

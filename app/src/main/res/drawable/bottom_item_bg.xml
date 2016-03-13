@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:bottom="8dp"
+        android:bottom="@dimen/item_corner_radius"
         android:left="@dimen/item_border_thickness"
         android:right="@dimen/item_border_thickness">
         <shape android:shape="rectangle">
@@ -11,8 +11,8 @@
     <item>
         <shape android:shape="rectangle">
             <corners
-                android:bottomLeftRadius="8dp"
-                android:bottomRightRadius="8dp"
+                android:bottomLeftRadius="@dimen/item_corner_radius"
+                android:bottomRightRadius="@dimen/item_corner_radius"
                 android:topLeftRadius="0dp"
                 android:topRightRadius="0dp" />
             <stroke
@@ -28,8 +28,8 @@
         <shape android:shape="rectangle">
             <solid android:color="@android:color/white" />
             <corners
-                android:bottomLeftRadius="8dp"
-                android:bottomRightRadius="8dp"
+                android:bottomLeftRadius="@dimen/item_corner_radius"
+                android:bottomRightRadius="@dimen/item_corner_radius"
                 android:topLeftRadius="0dp"
                 android:topRightRadius="0dp" />
         </shape>
