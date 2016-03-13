@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.jeranfox.peach.R;
 import com.jeranfox.peach.entities.ExploreItem;
+import com.jeranfox.peach.ui.utility.CircleTransformation;
+import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.TimeUnit;
 
@@ -42,17 +44,18 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == ViewType.CONTENT) {
             ContentViewHolder contentViewHolder = (ContentViewHolder) holder;
-            ExploreItem connection = exploreItems[position - HEADER_COUNT];
-            contentViewHolder.displayName.setText(connection.getDisplayName());
-            contentViewHolder.lastPost.setText(connection.getLastPost());
-            contentViewHolder.timeSinceLastPost.setText(formatLastPostTime(connection.getLastPostTime()));
+            ExploreItem exploreItem = exploreItems[position - HEADER_COUNT];
+            contentViewHolder.displayName.setText(exploreItem.getDisplayName());
+            contentViewHolder.lastPost.setText(exploreItem.getLastPost());
+            contentViewHolder.timeSinceLastPost.setText(formatLastPostTime(exploreItem.getLastPostTime()));
             int backgroundResourceId = R.drawable.item_bg;
             if (position == HEADER_COUNT) {
                 backgroundResourceId = R.drawable.top_item_bg;
             } else if (position == getItemCount() - FOOTER_COUNT - 1) {
                 backgroundResourceId = R.drawable.bottom_item_bg;
             }
-            contentViewHolder.root.setBackgroundResource(backgroundResourceId);
+            contentViewHolder.itemView.setBackgroundResource(backgroundResourceId);
+            Picasso.with(contentViewHolder.itemView.getContext()).load(exploreItem.getAvatarSrc()).transform(new CircleTransformation()).into(contentViewHolder.profileImage);
         }
     }
 
@@ -102,9 +105,6 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     static class ContentViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.explore_item_root)
-        View root;
-
         @Bind(R.id.explore_item_profile_image)
         ImageView profileImage;
 
