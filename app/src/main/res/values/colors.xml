@@ -5,6 +5,7 @@
     <color name="colorAccent">#FB5174</color>
     <color name="colorAccentPressed">#E24968</color>
     <color name="buttonDisabled">#D2D2D2</color>
+    <color name="itemBorder">#11000000</color>
 
     <!-- Peach used -->
     <color name="bg_explore">#ffd1f4f5</color>

@@ -44,6 +44,13 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
             contentViewHolder.title.setText(connection.getDisplayName());
             contentViewHolder.lastPost.setText(connection.getLastPost());
             contentViewHolder.timeSinceLastPost.setText(connection.getLastOnline() + "");
+            int backgroundResourceId = R.drawable.item_bg;
+            if (position == HEADER_COUNT) {
+                backgroundResourceId = R.drawable.top_item_bg;
+            } else if (position == getItemCount() - FOOTER_COUNT - 1) {
+                backgroundResourceId = R.drawable.bottom_item_bg;
+            }
+            contentViewHolder.root.setBackgroundResource(backgroundResourceId);
         }
     }
 
@@ -76,6 +83,9 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     }
 
     static class ContentViewHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.explore_item_root)
+        View root;
+
         @Bind(R.id.explore_item_profile_image)
         ImageView profileImage;
 

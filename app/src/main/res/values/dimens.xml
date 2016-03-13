@@ -5,6 +5,7 @@
     <dimen name="half_header_height">35dp</dimen>
     <dimen name="recycler_view_margin">15dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="item_border_thickness">1.8dp</dimen>
 
     <!-- Official Peach dimens -->
     <dimen name="design_fab_border_width" tools:override="true">0.5dip</dimen>
