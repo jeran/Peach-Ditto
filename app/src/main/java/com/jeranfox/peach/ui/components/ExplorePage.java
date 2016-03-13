@@ -26,6 +26,7 @@ public class ExplorePage extends FrameLayout implements ExploreView {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.page_explore, this, true);
         ButterKnife.bind(this);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         explorePresenter = createPresenter();
         explorePresenter.loadExploreFeed();
