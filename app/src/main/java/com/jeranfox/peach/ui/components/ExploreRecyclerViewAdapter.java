@@ -43,7 +43,7 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         if (getItemViewType(position) == ViewType.CONTENT) {
             ContentViewHolder contentViewHolder = (ContentViewHolder) holder;
             ExploreItem connection = exploreItems[position - HEADER_COUNT];
-            contentViewHolder.title.setText(connection.getDisplayName());
+            contentViewHolder.displayName.setText(connection.getDisplayName());
             contentViewHolder.lastPost.setText(connection.getLastPost());
             contentViewHolder.timeSinceLastPost.setText(formatLastPostTime(connection.getLastPostTime()));
             int backgroundResourceId = R.drawable.item_bg;
@@ -108,8 +108,8 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         @Bind(R.id.explore_item_profile_image)
         ImageView profileImage;
 
-        @Bind(R.id.explore_item_title)
-        TextView title;
+        @Bind(R.id.explore_item_display_name)
+        TextView displayName;
 
         @Bind(R.id.explore_item_last_post)
         TextView lastPost;
