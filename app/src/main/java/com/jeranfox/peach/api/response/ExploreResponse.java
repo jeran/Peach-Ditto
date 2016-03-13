@@ -31,10 +31,6 @@ public class ExploreResponse extends ApiResponse {
             return avatarSrc;
         }
 
-        public int getLastOnline() {
-            return lastOnline;
-        }
-
         public Post[] getPosts() {
             return posts;
         }
@@ -54,6 +50,10 @@ public class ExploreResponse extends ApiResponse {
 
         public Message[] getMessage() {
             return message;
+        }
+
+        public int getCreatedTime() {
+            return createdTime;
         }
     }
 

@@ -31,7 +31,11 @@ public class ExploreItem {
         return connection.getAvatarSrc();
     }
 
-    public int getLastOnline() {
-        return connection.getLastOnline();
+    public int getLastPostTime() {
+        ExploreResponse.Post[] posts = connection.getPosts();
+        if (posts.length > 0) {
+            return posts[posts.length - 1].getCreatedTime();
+        }
+        return -1;
     }
 }

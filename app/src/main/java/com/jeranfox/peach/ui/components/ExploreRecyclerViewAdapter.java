@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.jeranfox.peach.R;
 import com.jeranfox.peach.entities.ExploreItem;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -43,7 +45,7 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
             ExploreItem connection = exploreItems[position - HEADER_COUNT];
             contentViewHolder.title.setText(connection.getDisplayName());
             contentViewHolder.lastPost.setText(connection.getLastPost());
-            contentViewHolder.timeSinceLastPost.setText(connection.getLastOnline() + "");
+            contentViewHolder.timeSinceLastPost.setText(formatLastPostTime(connection.getLastPostTime()));
             int backgroundResourceId = R.drawable.item_bg;
             if (position == HEADER_COUNT) {
                 backgroundResourceId = R.drawable.top_item_bg;
@@ -51,6 +53,23 @@ public class ExploreRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
                 backgroundResourceId = R.drawable.bottom_item_bg;
             }
             contentViewHolder.root.setBackgroundResource(backgroundResourceId);
+        }
+    }
+
+    private static String formatLastPostTime(int lastPostTime) {
+        if (lastPostTime < 0) {
+            return "";
+        } else {
+            long timeDeltaSeconds = System.currentTimeMillis() / 1000 - lastPostTime;
+            if (timeDeltaSeconds < 60) {
+                return TimeUnit.SECONDS.toSeconds(timeDeltaSeconds) + "s";
+            } else if (timeDeltaSeconds < 60 * 60) {
+                return TimeUnit.SECONDS.toMinutes(timeDeltaSeconds) + "m";
+            } else if (timeDeltaSeconds < 60 * 60 * 24) {
+                return TimeUnit.SECONDS.toHours(timeDeltaSeconds) + "h";
+            } else {
+                return TimeUnit.SECONDS.toDays(timeDeltaSeconds) + "d";
+            }
         }
     }
 
