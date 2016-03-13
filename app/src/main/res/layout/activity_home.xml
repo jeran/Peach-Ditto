@@ -11,6 +11,12 @@
         android:layout_height="match_parent"
         android:background="@color/bg_explore" />
 
+    <View
+        android:id="@+id/home_gradient"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:layout_gravity="bottom" />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/home_fab"
         android:layout_width="wrap_content"
