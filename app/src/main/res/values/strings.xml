@@ -18,4 +18,8 @@
     <string name="invalid_email_password_pair">Invalid email/password pair</string>
 
     <string name="friends_of_friends">Friends of Friends</string>
+
+    <string name="search_friends">Search Friends</string>
+    <string name="tell_a_friend">Tell a Friend</string>
+    <string name="add_friend">Add Friend&#8230;</string>
 </resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/recycler_view_margin"
+    android:orientation="vertical"
+    tools:context=".ui.activities.HomeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:layout_marginLeft="@dimen/recycler_view_margin"
+        android:layout_marginRight="@dimen/recycler_view_margin"
+        android:background="@drawable/single_item_bg"
+        android:orientation="horizontal" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/feed_header_tell_a_friend"
+                style="@style/PeachButton.TransparentPeachButton"
+                android:layout_gravity="center"
+                android:text="@string/tell_a_friend" />
+
+            <Space
+                android:layout_width="@dimen/recycler_view_margin"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/feed_header_add_friend"
+                style="@style/PeachButton.GreenPeachButton"
+                android:layout_gravity="center"
+                android:text="@string/add_friend" />
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:background="?selectableItemBackgroundBorderless"
+            android:padding="24dp"
+            android:src="@drawable/gear_icon_bitmap" />
+    </FrameLayout>
+</LinearLayout>
