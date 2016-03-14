@@ -7,6 +7,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="item_border_thickness">1.8dp</dimen>
     <dimen name="item_corner_radius">12dp</dimen>
+    <dimen name="fab_dimen">56dp</dimen>
 
     <!-- Official Peach dimens -->
     <dimen name="design_fab_border_width" tools:override="true">0.5dip</dimen>
