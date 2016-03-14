@@ -30,7 +30,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:singleLine="true"
-            android:textColor="@color/displayNameFontColor"
+            android:textColor="@color/font_color_dark_gray"
             android:textSize="18sp"
             tools:text="lucas" />
 
@@ -42,6 +42,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:singleLine="true"
+            android:textColor="@color/font_color_light_gray"
             tools:text="my diet consists mainly of chocolates and coconuts" />
 
         <TextView
@@ -49,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|end"
+            android:textColor="@color/font_color_light_gray"
             tools:text="7 hours ago" />
     </FrameLayout>
 </LinearLayout>

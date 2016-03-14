@@ -4,6 +4,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/font_color_gray</item>
+        <item name="android:textColorHint">@color/font_color_gray</item>
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
@@ -20,7 +22,7 @@
     <style name="PeachButton.TransparentPeachButton">
         <item name="android:background">@drawable/transparent_peach_button_selector</item>
         <item name="android:layout_width">110dp</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/font_color_gray</item>
     </style>
 
     <style name="PeachButton.GreenPeachButton">

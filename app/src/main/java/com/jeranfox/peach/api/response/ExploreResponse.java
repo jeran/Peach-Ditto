@@ -67,5 +67,9 @@ public class ExploreResponse extends ApiResponse {
         public String getText() {
             return text;
         }
+
+        public String getType() {
+            return type;
+        }
     }
 }

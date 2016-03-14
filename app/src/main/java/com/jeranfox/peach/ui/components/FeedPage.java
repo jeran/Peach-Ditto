@@ -22,5 +22,6 @@ public class FeedPage extends FrameLayout {
         ButterKnife.bind(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(new FeedRecyclerViewAdapter());
+        recyclerView.scrollToPosition(1);
     }
 }

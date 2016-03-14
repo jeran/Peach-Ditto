@@ -19,8 +19,10 @@ public class ExploreItem {
             ExploreResponse.Message[] messages = posts[0].getMessage();
             if (messages.length > 0) {
                 String messageText = messages[0].getText();
-                if (messageText != null) {
+                if (messageText != null && !messageText.isEmpty()) {
                     return messageText;
+                } else {
+                    return messages[0].getType();
                 }
             }
         }

@@ -11,7 +11,7 @@
         <shape android:shape="rectangle">
             <stroke
                 android:width="@dimen/item_border_thickness"
-                android:color="@color/itemBorder" />
+                android:color="@color/item_border" />
         </shape>
     </item>
     <item
