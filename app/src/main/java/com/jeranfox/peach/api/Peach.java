@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 import com.jeranfox.peach.api.request.SignInRequest;
 import com.jeranfox.peach.api.response.ApiResponse;
 import com.jeranfox.peach.api.response.ExploreResponse;
+import com.jeranfox.peach.api.response.FeedResponse;
 import com.jeranfox.peach.api.response.SignInResponse;
 
 import java.util.HashSet;
@@ -69,6 +70,11 @@ public class Peach {
     public void getExploreFeed(Callback<ExploreResponse> exploreCallBack) {
         Call<ExploreResponse> call = peachService.getExploreFeed(getAuthHeader());
         executeCall(call, exploreCallBack);
+    }
+
+    public void getFeed(Callback<FeedResponse> feedCallBack) {
+        Call<FeedResponse> call = peachService.getFeed(getAuthHeader());
+        executeCall(call, feedCallBack);
     }
 
     private <T extends ApiResponse> void executeCall(Call<T> call, Callback<T> callback) {

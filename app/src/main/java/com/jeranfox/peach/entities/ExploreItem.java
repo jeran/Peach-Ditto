@@ -1,11 +1,13 @@
 package com.jeranfox.peach.entities;
 
-import com.jeranfox.peach.api.response.ExploreResponse;
+import com.jeranfox.peach.api.response.Connection;
+import com.jeranfox.peach.api.response.Message;
+import com.jeranfox.peach.api.response.Post;
 
 public class ExploreItem {
-    private ExploreResponse.Connection connection;
+    private Connection connection;
 
-    public ExploreItem(ExploreResponse.Connection connection) {
+    public ExploreItem(Connection connection) {
         this.connection = connection;
     }
 
@@ -14,9 +16,9 @@ public class ExploreItem {
     }
 
     public String getLastPost() {
-        ExploreResponse.Post[] posts = connection.getPosts();
+        Post[] posts = connection.getPosts();
         if (posts.length > 0) {
-            ExploreResponse.Message[] messages = posts[0].getMessage();
+            Message[] messages = posts[0].getMessage();
             if (messages.length > 0) {
                 String messageText = messages[0].getText();
                 if (messageText != null && !messageText.isEmpty()) {
@@ -34,7 +36,7 @@ public class ExploreItem {
     }
 
     public int getLastPostTime() {
-        ExploreResponse.Post[] posts = connection.getPosts();
+        Post[] posts = connection.getPosts();
         if (posts.length > 0) {
             return posts[posts.length - 1].getCreatedTime();
         }

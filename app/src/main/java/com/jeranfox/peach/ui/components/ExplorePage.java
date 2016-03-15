@@ -11,6 +11,7 @@ import com.jeranfox.peach.R;
 import com.jeranfox.peach.entities.ExploreItem;
 import com.jeranfox.peach.presenters.ExplorePresenter;
 import com.jeranfox.peach.presenters.ExplorePresenterImpl;
+import com.jeranfox.peach.ui.recycler.ExploreRecyclerViewAdapter;
 import com.jeranfox.peach.ui.views.ExploreView;
 
 import butterknife.Bind;

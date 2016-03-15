@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.jeranfox.peach.SimpleCallback;
 import com.jeranfox.peach.api.Peach;
+import com.jeranfox.peach.api.response.Connection;
 import com.jeranfox.peach.api.response.ExploreResponse;
 import com.jeranfox.peach.entities.ExploreItem;
 
@@ -39,7 +40,7 @@ public class ExploreModelImpl implements ExploreModel {
     }
 
     private static ExploreItem[] processExploreFeed(ExploreResponse exploreResponse) {
-        ExploreResponse.Connection[] connections = exploreResponse.getConnections();
+        Connection[] connections = exploreResponse.getConnections();
         ExploreItem[] exploreItems = new ExploreItem[connections.length];
         for (int i = 0; i < exploreItems.length; i++) {
             exploreItems[i] = new ExploreItem(connections[i]);
