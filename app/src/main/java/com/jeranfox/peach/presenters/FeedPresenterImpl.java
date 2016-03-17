@@ -43,6 +43,7 @@ public class FeedPresenterImpl implements FeedPresenter {
                     if (feedView != null) {
                         feedView.hideLoading();
                         feedView.displayErrorMessage(throwable.getMessage());
+                        feedView.showLoadingError();
                     }
                 }
             });

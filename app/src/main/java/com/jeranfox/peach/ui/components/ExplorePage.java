@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
@@ -29,6 +30,9 @@ public class ExplorePage extends FrameLayout implements ExploreView {
 
     @Bind(R.id.explore_progress)
     ProgressBar progressBar;
+
+    @Bind(R.id.explore_loading_error)
+    View errorLoading;
 
     public ExplorePage(Context context, HomeView homeView) {
         super(context);
@@ -73,6 +77,11 @@ public class ExplorePage extends FrameLayout implements ExploreView {
     @Override
     public void displayErrorMessage(String message) {
         homeView.displayErrorMessage(message);
+    }
+
+    @Override
+    public void showLoadingError() {
+        errorLoading.setVisibility(VISIBLE);
     }
 
     public ExplorePresenter createPresenter() {

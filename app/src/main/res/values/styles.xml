@@ -30,4 +30,11 @@
         <item name="android:background">@drawable/green_peach_button_selector</item>
         <item name="android:layout_width">110dp</item>
     </style>
+
+    <style name="ErrorLoading">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/font_color_dark_gray</item>
+    </style>
 </resources>

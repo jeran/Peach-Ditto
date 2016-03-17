@@ -16,4 +16,6 @@ public interface FeedView {
     void signOut();
 
     void displayErrorMessage(String message);
+
+    void showLoadingError();
 }

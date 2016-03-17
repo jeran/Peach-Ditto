@@ -42,6 +42,7 @@ public class ExplorePresenterImpl implements ExplorePresenter {
                     if (exploreView != null) {
                         exploreView.hideLoading();
                         exploreView.displayErrorMessage(throwable.getMessage());
+                        exploreView.showLoadingError();
                     }
                 }
             });
