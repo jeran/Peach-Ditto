@@ -20,6 +20,7 @@ import com.jeranfox.peach.ui.views.HomeView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ExplorePage extends FrameLayout implements ExploreView {
     private HomeView homeView;
@@ -82,6 +83,12 @@ public class ExplorePage extends FrameLayout implements ExploreView {
     @Override
     public void showLoadingError() {
         errorLoading.setVisibility(VISIBLE);
+    }
+
+    @OnClick(R.id.explore_loading_error)
+    void reloadExploreFeed() {
+        errorLoading.setVisibility(GONE);
+        explorePresenter.loadExploreFeed();
     }
 
     public ExplorePresenter createPresenter() {

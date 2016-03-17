@@ -23,6 +23,7 @@ import com.jeranfox.peach.ui.views.HomeView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FeedPage extends FrameLayout implements FeedView {
     private HomeView homeView;
@@ -94,6 +95,12 @@ public class FeedPage extends FrameLayout implements FeedView {
     @Override
     public void showLoadingError() {
         errorLoading.setVisibility(VISIBLE);
+    }
+
+    @OnClick(R.id.feed_loading_error)
+    void reloadFeed() {
+        errorLoading.setVisibility(GONE);
+        feedPresenter.loadFeed();
     }
 
     public FeedPresenter createPresenter() {
