@@ -7,5 +7,5 @@ public interface ExplorePresenter extends Presenter {
 
     void loadExploreFeed();
 
-    void releaseView();
+    void onDestroy(boolean isFinishing);
 }

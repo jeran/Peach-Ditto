@@ -11,7 +11,8 @@
     <color name="font_color_light_gray">#AAAAAA</color>
     <color name="bg_home_feed">#fffef0e8</color>
     <color name="green">#ff35e8b1</color>
-    <color name="greenPressed">#21bd6a</color>
+    <color name="green_pressed">#21bd6a</color>
+    <color name="blue_accent">#ff0084ff</color>
 
     <!-- Peach used -->
     <color name="bg_explore">#ffd1f4f5</color>

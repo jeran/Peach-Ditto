@@ -27,15 +27,22 @@ public class FeedPresenterImpl implements FeedPresenter {
         if (feedData != null) {
             feedView.setFeedData(feedData);
         } else {
+            feedView.showLoading();
             feedModel.getFeed(new SimpleCallback<FeedData>() {
                 @Override
                 public void onSuccess(FeedData response) {
                     feedData = response;
-                    feedView.setFeedData(feedData);
+                    if (feedView != null) {
+                        feedView.setFeedData(feedData);
+                        feedView.hideLoading();
+                    }
                 }
 
                 @Override
                 public void onFailure(Throwable throwable) {
+                    if (feedView != null) {
+                        feedView.hideLoading();
+                    }
                     // TODO(jeran): handle failure
                     // log failure
                     // show failure
@@ -45,8 +52,10 @@ public class FeedPresenterImpl implements FeedPresenter {
     }
 
     @Override
-    public void releaseView() {
+    public void onDestroy(boolean isFinishing) {
         setView(null);
-        feedModel.cancelRequests();
+        if (isFinishing) {
+            feedModel.cancelRequests();
+        }
     }
 }

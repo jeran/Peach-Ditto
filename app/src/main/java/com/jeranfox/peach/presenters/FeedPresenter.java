@@ -7,5 +7,5 @@ public interface FeedPresenter extends Presenter {
 
     void loadFeed();
 
-    void releaseView();
+    void onDestroy(boolean isFinishing);
 }

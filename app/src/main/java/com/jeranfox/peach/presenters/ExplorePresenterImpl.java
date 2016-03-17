@@ -17,8 +17,8 @@ public class ExplorePresenterImpl implements ExplorePresenter {
     }
 
     @Override
-    public void setView(ExploreView view) {
-        this.exploreView = view;
+    public void setView(ExploreView exploreView) {
+        this.exploreView = exploreView;
     }
 
     @Override
@@ -26,16 +26,22 @@ public class ExplorePresenterImpl implements ExplorePresenter {
         if (exploreItems != null) {
             exploreView.setExploreItems(exploreItems);
         } else {
-            // TODO(jeran): view.showLoading();
+            exploreView.showLoading();
             exploreModel.getExploreFeed(new SimpleCallback<ExploreItem[]>() {
                 @Override
                 public void onSuccess(ExploreItem[] response) {
                     exploreItems = response;
-                    exploreView.setExploreItems(exploreItems);
+                    if (exploreView != null) {
+                        exploreView.setExploreItems(exploreItems);
+                        exploreView.hideLoading();
+                    }
                 }
 
                 @Override
                 public void onFailure(Throwable throwable) {
+                    if (exploreView != null) {
+                        exploreView.hideLoading();
+                    }
                     // TODO(jeran): handle failure
                     // log failure
                     // view.showFailure
@@ -45,8 +51,10 @@ public class ExplorePresenterImpl implements ExplorePresenter {
     }
 
     @Override
-    public void releaseView() {
+    public void onDestroy(boolean isFinishing) {
         setView(null);
-        exploreModel.cancelRequests();
+        if (isFinishing) {
+            exploreModel.cancelRequests();
+        }
     }
 }

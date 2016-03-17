@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.jeranfox.peach.PresenterHolder;
 import com.jeranfox.peach.R;
@@ -24,6 +25,9 @@ public class ExplorePage extends FrameLayout implements ExploreView {
     @Bind(R.id.explore_recycler_view)
     RecyclerView recyclerView;
 
+    @Bind(R.id.explore_progress)
+    ProgressBar progressBar;
+
     public ExplorePage(Context context) {
         super(context);
         setId(R.id.home_explore_page);
@@ -36,7 +40,7 @@ public class ExplorePage extends FrameLayout implements ExploreView {
     }
 
     public void onDestroy(boolean isFinishing) {
-        explorePresenter.releaseView();
+        explorePresenter.onDestroy(isFinishing);
         if (isFinishing) {
             PresenterHolder.getInstance().remove(ExplorePresenter.class);
         }
@@ -51,6 +55,16 @@ public class ExplorePage extends FrameLayout implements ExploreView {
     @Override
     public void setExploreItems(ExploreItem[] exploreItems) {
         recyclerView.setAdapter(new ExploreRecyclerViewAdapter(exploreItems));
+    }
+
+    @Override
+    public void showLoading() {
+        progressBar.setVisibility(VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        progressBar.setVisibility(GONE);
     }
 
     public ExplorePresenter createPresenter() {

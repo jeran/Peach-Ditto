@@ -8,4 +8,8 @@ public interface FeedView {
     Context getContext();
 
     void setFeedData(FeedData feedData);
+
+    void showLoading();
+
+    void hideLoading();
 }

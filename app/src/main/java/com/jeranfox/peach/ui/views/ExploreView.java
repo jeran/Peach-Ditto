@@ -8,4 +8,8 @@ public interface ExploreView {
     void setExploreItems(ExploreItem[] exploreItems);
 
     Context getContext();
+
+    void showLoading();
+
+    void hideLoading();
 }

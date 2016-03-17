@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.jeranfox.peach.PresenterHolder;
 import com.jeranfox.peach.R;
@@ -24,6 +25,9 @@ public class FeedPage extends FrameLayout implements FeedView {
     @Bind(R.id.feed_recycler_view)
     RecyclerView recyclerView;
 
+    @Bind(R.id.feed_progress)
+    ProgressBar progressBar;
+
     public FeedPage(Context context) {
         super(context);
         setId(R.id.home_feed_page);
@@ -36,7 +40,7 @@ public class FeedPage extends FrameLayout implements FeedView {
     }
 
     public void onDestroy(boolean isFinishing) {
-        feedPresenter.releaseView();
+        feedPresenter.onDestroy(isFinishing);
         if (isFinishing) {
             PresenterHolder.getInstance().remove(FeedPresenter.class);
         }
@@ -52,6 +56,16 @@ public class FeedPage extends FrameLayout implements FeedView {
     public void setFeedData(FeedData feedData) {
         recyclerView.setAdapter(new FeedRecyclerViewAdapter(feedData));
         recyclerView.scrollToPosition(1);
+    }
+
+    @Override
+    public void showLoading() {
+        progressBar.setVisibility(VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        progressBar.setVisibility(GONE);
     }
 
     public FeedPresenter createPresenter() {
