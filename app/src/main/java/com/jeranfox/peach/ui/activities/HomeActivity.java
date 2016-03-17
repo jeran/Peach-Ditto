@@ -74,6 +74,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private void openPage(int page, boolean animate) {
         viewPager.setCurrentItem(page, animate);
+        setPagerButtonColors(page);
+    }
+
+    private void setPagerButtonColors(int page) {
         exploreButton.setAlpha(page == EXPLORE_PAGE_INDEX ?
                 PAGER_BUTTON_SELECTED_ALPHA : PAGER_BUTTON_UNSELECTED_ALPHA);
         feedButton.setAlpha(page == EXPLORE_PAGE_INDEX
@@ -105,6 +109,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             setColorTheme(position == 0 ? exploreBackgroundColor : feedBackgroundColor);
+            setPagerButtonColors(position);
         }
 
         @Override
