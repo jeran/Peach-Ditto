@@ -38,6 +38,11 @@ public class FeedModelImpl implements FeedModel {
         });
     }
 
+    @Override
+    public void signOut() {
+        peach.signOut();
+    }
+
     private static FeedData processFeed(FeedResponse feedResponse) {
         return new FeedData(feedResponse);
     }

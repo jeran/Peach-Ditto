@@ -8,4 +8,6 @@ public interface FeedPresenter extends Presenter {
     void loadFeed();
 
     void onDestroy(boolean isFinishing);
+
+    void signOut();
 }

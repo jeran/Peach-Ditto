@@ -22,4 +22,5 @@
     <string name="search_friends">Search Friends</string>
     <string name="tell_a_friend">Tell a Friend</string>
     <string name="add_friend">Add Friend&#8230;</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

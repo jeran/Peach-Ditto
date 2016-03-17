@@ -12,4 +12,6 @@ public interface FeedView {
     void showLoading();
 
     void hideLoading();
+
+    void signOut();
 }

@@ -1,6 +1,8 @@
 package com.jeranfox.peach.ui.components;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +15,7 @@ import com.jeranfox.peach.R;
 import com.jeranfox.peach.entities.FeedData;
 import com.jeranfox.peach.presenters.FeedPresenter;
 import com.jeranfox.peach.presenters.FeedPresenterImpl;
+import com.jeranfox.peach.ui.activities.IntroActivity;
 import com.jeranfox.peach.ui.recycler.FeedRecyclerViewAdapter;
 import com.jeranfox.peach.ui.views.FeedView;
 
@@ -54,7 +57,7 @@ public class FeedPage extends FrameLayout implements FeedView {
 
     @Override
     public void setFeedData(FeedData feedData) {
-        recyclerView.setAdapter(new FeedRecyclerViewAdapter(feedData));
+        recyclerView.setAdapter(new FeedRecyclerViewAdapter(feedData, this));
         recyclerView.scrollToPosition(1);
     }
 
@@ -66,6 +69,14 @@ public class FeedPage extends FrameLayout implements FeedView {
     @Override
     public void hideLoading() {
         progressBar.setVisibility(GONE);
+    }
+
+    @Override
+    public void signOut() {
+        feedPresenter.signOut();
+        ((Activity) getContext()).finish();
+        getContext().startActivity(new Intent(getContext(), IntroActivity
+                .class));
     }
 
     public FeedPresenter createPresenter() {

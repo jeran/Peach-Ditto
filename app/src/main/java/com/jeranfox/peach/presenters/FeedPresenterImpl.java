@@ -58,4 +58,9 @@ public class FeedPresenterImpl implements FeedPresenter {
             feedModel.cancelRequests();
         }
     }
+
+    @Override
+    public void signOut() {
+        feedModel.signOut();
+    }
 }

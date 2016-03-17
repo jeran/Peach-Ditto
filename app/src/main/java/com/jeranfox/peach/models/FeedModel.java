@@ -7,4 +7,6 @@ public interface FeedModel {
     void cancelRequests();
 
     void getFeed(SimpleCallback<FeedData> callback);
+
+    void signOut();
 }

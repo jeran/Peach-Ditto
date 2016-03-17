@@ -9,14 +9,20 @@ import com.jeranfox.peach.R;
 import com.jeranfox.peach.entities.ExploreItem;
 import com.jeranfox.peach.entities.FeedData;
 import com.jeranfox.peach.ui.recycler.holders.HomeContentViewHolder;
+import com.jeranfox.peach.ui.views.FeedView;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int HEADER_COUNT = 2;
     private static final int FOOTER_COUNT = 1;
     private FeedData feedData;
+    private FeedView feedView;
 
-    public FeedRecyclerViewAdapter(FeedData feedData) {
+    public FeedRecyclerViewAdapter(FeedData feedData, FeedView feedView) {
         this.feedData = feedData;
+        this.feedView = feedView;
     }
 
     @Override
@@ -26,7 +32,7 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                     .inflate(R.layout.search_header, parent, false));
         } else if (viewType == ViewType.HEADER) {
             return new HeaderViewHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.feed_header, parent, false));
+                    .inflate(R.layout.feed_header, parent, false), feedView);
         } else if (viewType == ViewType.FOOTER) {
             return new FooterViewHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.explore_footer, parent, false));
@@ -77,8 +83,17 @@ public class FeedRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     static class HeaderViewHolder extends RecyclerView.ViewHolder {
-        public HeaderViewHolder(View itemView) {
+        private FeedView feedView;
+
+        public HeaderViewHolder(View itemView, FeedView feedView) {
             super(itemView);
+            this.feedView = feedView;
+            ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick(R.id.feed_header_tell_a_friend)
+        void signOut() {
+            feedView.signOut();
         }
     }
 

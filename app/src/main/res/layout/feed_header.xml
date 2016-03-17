@@ -28,7 +28,7 @@
                 android:id="@+id/feed_header_tell_a_friend"
                 style="@style/PeachButton.TransparentPeachButton"
                 android:layout_gravity="center"
-                android:text="@string/tell_a_friend" />
+                android:text="@string/sign_out" />
 
             <Space
                 android:layout_width="@dimen/recycler_view_margin"
