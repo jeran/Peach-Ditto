@@ -41,10 +41,8 @@ public class ExplorePresenterImpl implements ExplorePresenter {
                 public void onFailure(Throwable throwable) {
                     if (exploreView != null) {
                         exploreView.hideLoading();
+                        exploreView.displayErrorMessage(throwable.getMessage());
                     }
-                    // TODO(jeran): handle failure
-                    // log failure
-                    // view.showFailure
                 }
             });
         }

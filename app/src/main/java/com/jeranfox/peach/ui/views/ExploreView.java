@@ -12,4 +12,6 @@ public interface ExploreView {
     void showLoading();
 
     void hideLoading();
+
+    void displayErrorMessage(String message);
 }

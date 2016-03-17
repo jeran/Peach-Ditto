@@ -15,11 +15,13 @@ import com.jeranfox.peach.presenters.ExplorePresenter;
 import com.jeranfox.peach.presenters.ExplorePresenterImpl;
 import com.jeranfox.peach.ui.recycler.ExploreRecyclerViewAdapter;
 import com.jeranfox.peach.ui.views.ExploreView;
+import com.jeranfox.peach.ui.views.HomeView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ExplorePage extends FrameLayout implements ExploreView {
+    private HomeView homeView;
     private ExplorePresenter explorePresenter;
 
     @Bind(R.id.explore_recycler_view)
@@ -28,9 +30,10 @@ public class ExplorePage extends FrameLayout implements ExploreView {
     @Bind(R.id.explore_progress)
     ProgressBar progressBar;
 
-    public ExplorePage(Context context) {
+    public ExplorePage(Context context, HomeView homeView) {
         super(context);
         setId(R.id.home_explore_page);
+        this.homeView = homeView;
         LayoutInflater.from(context).inflate(R.layout.page_explore, this, true);
         ButterKnife.bind(this);
         recyclerView.setHasFixedSize(true);
@@ -65,6 +68,11 @@ public class ExplorePage extends FrameLayout implements ExploreView {
     @Override
     public void hideLoading() {
         progressBar.setVisibility(GONE);
+    }
+
+    @Override
+    public void displayErrorMessage(String message) {
+        homeView.displayErrorMessage(message);
     }
 
     public ExplorePresenter createPresenter() {

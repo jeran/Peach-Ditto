@@ -18,11 +18,13 @@ import com.jeranfox.peach.presenters.FeedPresenterImpl;
 import com.jeranfox.peach.ui.activities.IntroActivity;
 import com.jeranfox.peach.ui.recycler.FeedRecyclerViewAdapter;
 import com.jeranfox.peach.ui.views.FeedView;
+import com.jeranfox.peach.ui.views.HomeView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class FeedPage extends FrameLayout implements FeedView {
+    private HomeView homeView;
     private FeedPresenter feedPresenter;
 
     @Bind(R.id.feed_recycler_view)
@@ -31,9 +33,10 @@ public class FeedPage extends FrameLayout implements FeedView {
     @Bind(R.id.feed_progress)
     ProgressBar progressBar;
 
-    public FeedPage(Context context) {
+    public FeedPage(Context context, HomeView homeView) {
         super(context);
         setId(R.id.home_feed_page);
+        this.homeView = homeView;
         LayoutInflater.from(context).inflate(R.layout.page_feed, this, true);
         ButterKnife.bind(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -77,6 +80,11 @@ public class FeedPage extends FrameLayout implements FeedView {
         ((Activity) getContext()).finish();
         getContext().startActivity(new Intent(getContext(), IntroActivity
                 .class));
+    }
+
+    @Override
+    public void displayErrorMessage(String message) {
+        homeView.displayErrorMessage(message);
     }
 
     public FeedPresenter createPresenter() {

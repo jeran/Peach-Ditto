@@ -14,4 +14,6 @@ public interface FeedView {
     void hideLoading();
 
     void signOut();
+
+    void displayErrorMessage(String message);
 }

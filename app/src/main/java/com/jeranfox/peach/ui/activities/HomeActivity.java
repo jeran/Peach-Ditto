@@ -5,23 +5,28 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.jeranfox.peach.R;
 import com.jeranfox.peach.ui.components.HomePagerAdapter;
+import com.jeranfox.peach.ui.views.HomeView;
 
 import butterknife.Bind;
 import butterknife.BindColor;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements HomeView {
     private static final int EXPLORE_PAGE_INDEX = 0;
     private static final int FEED_PAGE_INDEX = 1;
     private static final float PAGER_BUTTON_SELECTED_ALPHA = 0.8f;
     private static final float PAGER_BUTTON_UNSELECTED_ALPHA = 0.3f;
+
+    @Bind(R.id.home_root)
+    View root;
 
     @Bind(R.id.home_view_pager)
     ViewPager viewPager;
@@ -46,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
-        viewPager.setAdapter(new HomePagerAdapter(this));
+        viewPager.setAdapter(new HomePagerAdapter(this, this));
         viewPager.addOnPageChangeListener(new HomeOnPageChangeListener());
         openPage(FEED_PAGE_INDEX, false);
     }
@@ -89,6 +94,11 @@ public class HomeActivity extends AppCompatActivity {
                 GradientDrawable.Orientation.TOP_BOTTOM,
                 new int[]{0x00000000, color}));
         viewPager.setBackgroundColor(color);
+    }
+
+    @Override
+    public void displayErrorMessage(String message) {
+        Snackbar.make(root, message, Snackbar.LENGTH_LONG).show();
     }
 
     private class HomeOnPageChangeListener implements ViewPager.OnPageChangeListener {

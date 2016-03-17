@@ -42,10 +42,8 @@ public class FeedPresenterImpl implements FeedPresenter {
                 public void onFailure(Throwable throwable) {
                     if (feedView != null) {
                         feedView.hideLoading();
+                        feedView.displayErrorMessage(throwable.getMessage());
                     }
-                    // TODO(jeran): handle failure
-                    // log failure
-                    // show failure
                 }
             });
         }

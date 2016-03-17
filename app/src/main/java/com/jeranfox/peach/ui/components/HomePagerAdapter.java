@@ -5,13 +5,15 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jeranfox.peach.ui.views.HomeView;
+
 public class HomePagerAdapter extends PagerAdapter {
     private ExplorePage explorePage;
     private FeedPage feedPage;
 
-    public HomePagerAdapter(Context context) {
-        explorePage = new ExplorePage(context);
-        feedPage = new FeedPage(context);
+    public HomePagerAdapter(Context context, HomeView homeView) {
+        explorePage = new ExplorePage(context, homeView);
+        feedPage = new FeedPage(context, homeView);
     }
 
     public void onDestroy(boolean isFinishing) {
