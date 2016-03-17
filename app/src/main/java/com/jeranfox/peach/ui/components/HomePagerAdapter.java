@@ -14,6 +14,11 @@ public class HomePagerAdapter extends PagerAdapter {
         feedPage = new FeedPage(context);
     }
 
+    public void onDestroy(boolean isFinishing) {
+        explorePage.onDestroy(isFinishing);
+        feedPage.onDestroy(isFinishing);
+    }
+
     @Override
     public Object instantiateItem(ViewGroup collection, int position) {
         View page;

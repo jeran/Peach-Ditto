@@ -6,4 +6,6 @@ public interface FeedPresenter extends Presenter {
     void setView(FeedView view);
 
     void loadFeed();
+
+    void releaseView();
 }

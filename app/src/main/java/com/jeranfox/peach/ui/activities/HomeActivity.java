@@ -51,6 +51,12 @@ public class HomeActivity extends AppCompatActivity {
         openPage(FEED_PAGE_INDEX, false);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ((HomePagerAdapter) viewPager.getAdapter()).onDestroy(isFinishing());
+    }
+
     @OnClick(R.id.home_fab)
     void openPersonalFeed() {
         startActivity(new Intent(this, PersonalFeedActivity.class));

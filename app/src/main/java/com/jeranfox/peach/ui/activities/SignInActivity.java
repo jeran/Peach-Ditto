@@ -64,11 +64,17 @@ public class SignInActivity extends AppCompatActivity implements SignInView {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        PresenterHolder.getInstance().putPresenter(SignInPresenter.class, signInPresenter);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         signInPresenter.releaseView();
         if (isFinishing()) {
-            PresenterHolder.getInstance().remove(SignInActivity.class);
+            PresenterHolder.getInstance().remove(SignInPresenter.class);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.jeranfox.peach.ui.components;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -25,12 +26,26 @@ public class ExplorePage extends FrameLayout implements ExploreView {
 
     public ExplorePage(Context context) {
         super(context);
+        setId(R.id.home_explore_page);
         LayoutInflater.from(context).inflate(R.layout.page_explore, this, true);
         ButterKnife.bind(this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         explorePresenter = createPresenter();
         explorePresenter.loadExploreFeed();
+    }
+
+    public void onDestroy(boolean isFinishing) {
+        explorePresenter.releaseView();
+        if (isFinishing) {
+            PresenterHolder.getInstance().remove(ExplorePresenter.class);
+        }
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        PresenterHolder.getInstance().putPresenter(ExplorePresenter.class, explorePresenter);
+        return super.onSaveInstanceState();
     }
 
     @Override

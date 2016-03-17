@@ -6,4 +6,6 @@ public interface ExplorePresenter extends Presenter {
     void setView(ExploreView view);
 
     void loadExploreFeed();
+
+    void releaseView();
 }

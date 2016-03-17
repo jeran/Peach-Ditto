@@ -43,4 +43,10 @@ public class ExplorePresenterImpl implements ExplorePresenter {
             });
         }
     }
+
+    @Override
+    public void releaseView() {
+        setView(null);
+        exploreModel.cancelRequests();
+    }
 }
